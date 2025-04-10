@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Icons for CSS Snagger</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+        .instructions {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+    <h1>Create Icons for CSS Snagger Extension</h1>
+    
+    <div class="instructions">
+        <p>This page will help you create the necessary icons for the CSS Snagger extension.</p>
+        <p>Click the buttons below to generate and download each icon size.</p>
+    </div>
+    
+    <div>
+        <canvas id="icon16" width="16" height="16"></canvas>
+        <button onclick="downloadIcon(16)">Download 16x16 Icon</button>
+    </div>
+    
+    <div>
+        <canvas id="icon48" width="48" height="48"></canvas>
+        <button onclick="downloadIcon(48)">Download 48x48 Icon</button>
+    </div>
+    
+    <div>
+        <canvas id="icon128" width="128" height="128"></canvas>
+        <button onclick="downloadIcon(128)">Download 128x128 Icon</button>
+    </div>
+    
+    <script>
+        // Function to draw the icon
+        function drawIcon(size) {
+            const canvas = document.getElementById(`icon${size}`);
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Background
+            ctx.fillStyle = '#ff5722';
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Eyedropper shape
+            ctx.fillStyle = 'white';
+            
+            // Scale based on size
+            const scale = size / 128;
+            
+            // Draw eyedropper
+            ctx.beginPath();
+            ctx.moveTo(size * 0.3, size * 0.3);
+            ctx.lineTo(size * 0.7, size * 0.7);
+            ctx.lineTo(size * 0.6, size * 0.8);
+            ctx.lineTo(size * 0.2, size * 0.4);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Draw drop
+            ctx.beginPath();
+            ctx.arc(size * 0.75, size * 0.75, size * 0.15, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // CSS text
+            if (size >= 48) {
+                ctx.fillStyle = '#333';
+                ctx.font = `bold ${Math.floor(size * 0.2)}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.fillText('CSS', size * 0.5, size * 0.5);
+            }
+        }
+        
+        // Function to download the icon
+        function downloadIcon(size) {
+            drawIcon(size);
+            const canvas = document.getElementById(`icon${size}`);
+            const link = document.createElement('a');
+            link.download = `icon_${size}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // Draw icons on page load
+        window.onload = function() {
+            drawIcon(16);
+            drawIcon(48);
+            drawIcon(128);
+        };
+    </script>
+</body>
+</html>

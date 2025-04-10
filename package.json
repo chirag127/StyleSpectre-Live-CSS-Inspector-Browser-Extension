@@ -1,0 +1,12 @@
+{
+  "name": "instant-css-snagger",
+  "version": "1.0.0",
+  "description": "Browser extension to instantly view and copy CSS styles, DOM paths, and HTML structure of any element",
+  "scripts": {
+    "build": "mkdir -p dist && cp -r manifest.json popup.html popup.js content.js utils.js styles icons dist/",
+    "zip": "cd dist && zip -r ../instant-css-snagger.zip *"
+  },
+  "author": "Chirag Singhal",
+  "license": "MIT",
+  "devDependencies": {}
+}
