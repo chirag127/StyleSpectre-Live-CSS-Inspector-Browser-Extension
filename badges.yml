@@ -1,0 +1,22 @@
+badges:
+  - name: Build Status
+    url: "https://img.shields.io/github/workflow/status/chirag127/StyleSpectre-Live-CSS-Inspector-Browser-Extension/ci.yml?label=Build&style=flat-square&logo=github"
+    markdown: "[![Build Status](https://img.shields.io/github/workflow/status/chirag127/StyleSpectre-Live-CSS-Inspector-Browser-Extension/ci.yml?label=Build&style=flat-square&logo=github)](https://github.com/chirag127/StyleSpectre-Live-CSS-Inspector-Browser-Extension/actions/workflows/ci.yml)"
+  - name: Code Coverage
+    url: "https://img.shields.io/codecov/c/github/chirag127/StyleSpectre-Live-CSS-Inspector-Browser-Extension?style=flat-square&token=..."
+    markdown: "[![Code Coverage](https://img.shields.io/codecov/c/github/chirag127/StyleSpectre-Live-CSS-Inspector-Browser-Extension?style=flat-square&token=...)](https://codecov.io/gh/chirag127/StyleSpectre-Live-CSS-Inspector-Browser-Extension)"
+  - name: Language
+    url: "https://img.shields.io/badge/Language-TypeScript-3178C6?style=flat-square&logo=typescript"
+    markdown: "[![Language](https://img.shields.io/badge/Language-TypeScript-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)"
+  - name: Framework
+    url: "https://img.shields.io/badge/Framework-Vite-646622?style=flat-square&logo=vite"
+    markdown: "[![Framework](https://img.shields.io/badge/Framework-Vite-646622?style=flat-square&logo=vite)](https://vitejs.dev/)"
+  - name: Linting
+    url: "https://img.shields.io/badge/Linting-Biome-00A88D?style=flat-square&logo=biome"
+    markdown: "[![Linting](https://img.shields.io/badge/Linting-Biome-00A88D?style=flat-square&logo=biome)](https://biomejs.dev/)"
+  - name: License
+    url: "https://img.shields.io/badge/License-CC%20BY--NC%204.0-blue?style=flat-square&link=https://github.com/chirag127/StyleSpectre-Live-CSS-Inspector-Browser-Extension/blob/main/LICENSE)"
+    markdown: "[![License](https://img.shields.io/badge/License-CC%20BY--NC%204.0-blue?style=flat-square&link=https://github.com/chirag127/StyleSpectre-Live-CSS-Inspector-Browser-Extension/blob/main/LICENSE)](https://creativecommons.org/licenses/by-nc/4.0/)"
+  - name: GitHub Stars
+    url: "https://img.shields.io/github/stars/chirag127/StyleSpectre-Live-CSS-Inspector-Browser-Extension?style=flat-square&logo=github"
+    markdown: "[![GitHub Stars](https://img.shields.io/github/stars/chirag127/StyleSpectre-Live-CSS-Inspector-Browser-Extension?style=flat-square&logo=github)](https://github.com/chirag127/StyleSpectre-Live-CSS-Inspector-Browser-Extension)"
