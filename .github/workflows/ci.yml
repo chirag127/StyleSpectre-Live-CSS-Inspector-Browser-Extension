@@ -1,0 +1,86 @@
+name: CI
+
+# Trigger the workflow on push events to the main branch and on pull requests
+# targeting the main branch.
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# Define environment variables that will be available to all jobs in the workflow.
+env:
+  # Set the CI environment variable to "true" to indicate a CI context.
+  CI: true
+  # Set the Vite build target to "chrome" for Chrome extension compatibility.
+  VITE_BUILD_TARGET: "chrome"
+
+# Define the jobs that will be executed as part of the workflow.
+jobs:
+  # The "build-and-test" job is responsible for building and testing the extension.
+  build-and-test:
+    # Use the "ubuntu-latest" runner for the job.
+    runs-on: ubuntu-latest
+
+    # Define the steps that will be executed in the job.
+    steps:
+      # Step 1: Checkout the repository code.
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js environment.
+      # Use Node.js version 20.x, which is compatible with Vite and modern JS.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          # Cache npm dependencies to speed up subsequent runs.
+          cache: 'npm'
+
+      # Step 3: Install project dependencies.
+      # This step uses npm ci to install dependencies, which is generally faster
+      # and more reliable in CI environments than npm install.
+      - name: Install Dependencies
+        run: npm ci
+
+      # Step 4: Run linters and formatters.
+      # Use npm run lint to enforce code style and catch potential issues.
+      - name: Lint Code
+        run: npm run lint
+
+      # Step 5: Build the project for production.
+      # This step uses Vite to build the extension, optimized for production.
+      # The "VITE_BUILD_TARGET: chrome" environment variable ensures it's built for Chrome.
+      - name: Build Project
+        run: npm run build
+        # Add environment variables specific to the build step if needed.
+        # env:
+        #   VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+
+      # Step 6: Run unit tests.
+      # Use npm test to execute the test suite defined in package.json.
+      # Vitest is assumed to be configured for running tests.
+      - name: Run Unit Tests
+        run: npm test
+
+      # Step 7: (Optional) Upload build artifacts.
+      # This step uploads the built extension files as an artifact, which can be
+      # downloaded and inspected or used for further deployment steps.
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          # Specify the name of the artifact.
+          name: 'StyleSpectre-Build'
+          # Specify the directory containing the build output.
+          # Assumes Vite's default "dist" output directory.
+          path: 'dist/'
+
+      # Step 8: (Optional) Deploy to GitHub Pages (if applicable).
+      # If this repository is intended to host a demo or documentation on GitHub Pages,
+      # this step would handle the deployment.
+      # Example for a static site deployment:
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: './dist'
